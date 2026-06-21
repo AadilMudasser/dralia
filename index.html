@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AQ Wellness Portal</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="landing">
+
+  <div class="landing-brand">
+    <div class="landing-logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.6-10-9.3C.3 7.6 2.7 4 6.5 4c2 0 3.6 1 5.5 3 1.9-2 3.5-3 5.5-3 3.8 0 6.2 3.6 4.5 7.7C19.5 16.4 12 21 12 21z"/></svg>
+    </div>
+    <h1>AQ Wellness Portal</h1>
+    <p>Your medical weight management journey, all in one place.</p>
+  </div>
+
+  <div class="landing-card">
+    <div class="portal-choice">
+      <div class="portal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <h2>Patient Login</h2>
+      <p>View your plans, forms, notes and progress photos.</p>
+      <button class="btn btn-primary" id="openPatientLogin">Patient Login</button>
+    </div>
+    <div class="portal-choice">
+      <div class="portal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/><path d="M3.22 9H9l1.5-3L13 11l1.5-2.5h6.28"/></svg>
+      </div>
+      <h2>Doctor Login</h2>
+      <p>Manage patients, plans, forms and consultation notes.</p>
+      <button class="btn btn-secondary" id="openDoctorLogin">Doctor Login</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Patient Login Modal -->
+<div class="login-overlay" id="patientLoginOverlay">
+  <div class="login-box">
+    <button class="login-box-close" data-close>&times;</button>
+    <h2>Patient Login</h2>
+    <p class="subtitle">Sign in with the credentials provided by your doctor.</p>
+    <div class="form-error" id="patientLoginError"></div>
+    <form id="patientLoginForm">
+      <div class="form-group">
+        <label for="patientEmail">Email</label>
+        <input type="email" id="patientEmail" required autocomplete="username" />
+      </div>
+      <div class="form-group">
+        <label for="patientPassword">Password</label>
+        <input type="password" id="patientPassword" required autocomplete="current-password" />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="patientLoginBtn">Sign In</button>
+    </form>
+  </div>
+</div>
+
+<!-- Doctor Login Modal -->
+<div class="login-overlay" id="doctorLoginOverlay">
+  <div class="login-box">
+    <button class="login-box-close" data-close>&times;</button>
+    <h2>Doctor Login</h2>
+    <p class="subtitle">Sign in to manage your clinic and patients.</p>
+    <div class="form-error" id="doctorLoginError"></div>
+    <form id="doctorLoginForm">
+      <div class="form-group">
+        <label for="doctorEmail">Email</label>
+        <input type="email" id="doctorEmail" required autocomplete="username" />
+      </div>
+      <div class="form-group">
+        <label for="doctorPassword">Password</label>
+        <input type="password" id="doctorPassword" required autocomplete="current-password" />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="doctorLoginBtn">Sign In</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

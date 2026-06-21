@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Portal — AQ Wellness</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<div class="app-shell">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-dot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.6-10-9.3C.3 7.6 2.7 4 6.5 4c2 0 3.6 1 5.5 3 1.9-2 3.5-3 5.5-3 3.8 0 6.2 3.6 4.5 7.7C19.5 16.4 12 21 12 21z"/></svg>
+      </div>
+      <div class="brand-text">
+        <strong>AQ Wellness</strong>
+        <span>Patient Portal</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item active" data-tab="overview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+        Overview
+      </a>
+      <a class="nav-item" data-tab="profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        My Profile
+      </a>
+      <a class="nav-item" data-tab="photos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
+        Progress Photos
+      </a>
+      <a class="nav-item" data-tab="plans">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+        Treatment Plans
+      </a>
+      <a class="nav-item" data-tab="forms">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Forms
+        <span class="nav-badge" id="formsBadge" style="display:none;">0</span>
+      </a>
+      <a class="nav-item" data-tab="notes">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Consultation Notes
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar-sm" id="sidebarAvatar">--</div>
+        <div>
+          <div class="u-name" id="sidebarName">Loading...</div>
+          <div class="u-role">Patient</div>
+        </div>
+      </div>
+      <button class="btn btn-ghost btn-block btn-sm" id="logoutBtn">Log Out</button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main-content">
+
+    <div class="topbar">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <button class="mobile-toggle" id="mobileToggle">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+        <div>
+          <h1 id="pageTitle">Overview</h1>
+          <p class="topbar-sub" id="pageSub">Welcome back to your wellness journey</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <div class="notif-bell" id="notifBell">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+          <span class="dot" id="notifDot"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="notif-panel" id="notifPanel">
+      <div class="notif-panel-header">
+        <span>Notifications</span>
+        <button class="btn btn-ghost btn-sm" id="markAllReadBtn">Mark all read</button>
+      </div>
+      <div id="notifList"><div class="loading-wrap"><div class="spinner"></div></div></div>
+    </div>
+
+    <!-- ============ OVERVIEW TAB ============ -->
+    <section class="tab-panel active" id="tab-overview">
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-icon pink">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          </div>
+          <div class="stat-value" id="statPlans">--</div>
+          <div class="stat-label">Active Treatment Plans</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <div class="stat-value" id="statForms">--</div>
+          <div class="stat-label">Pending Forms</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon pink">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
+          </div>
+          <div class="stat-value" id="statPhotos">--</div>
+          <div class="stat-label">Progress Photos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="stat-value" id="statNotes">--</div>
+          <div class="stat-label">Consultation Notes</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Recent Activity</h3>
+          <span class="card-sub">Latest updates from Dr. Alia Qaiser</span>
+        </div>
+        <div id="recentActivityList"><div class="loading-wrap"><div class="spinner"></div></div></div>
+      </div>
+    </section>
+
+    <!-- ============ PROFILE TAB ============ -->
+    <section class="tab-panel" id="tab-profile">
+      <div class="card">
+        <div class="profile-header">
+          <div class="avatar-lg" id="profileAvatarLg">--</div>
+          <div class="profile-meta">
+            <h2 id="profileName">--</h2>
+            <div class="pm-row">
+              <span id="profileEmail">--</span>
+              <span id="profilePhone">--</span>
+            </div>
+          </div>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-label">Date of Birth</div>
+            <div class="info-value" id="profileDob">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Gender</div>
+            <div class="info-value" id="profileGender">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Height</div>
+            <div class="info-value" id="profileHeight">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Weight</div>
+            <div class="info-value" id="profileWeight">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Address</div>
+            <div class="info-value" id="profileAddress">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Emergency Contact</div>
+            <div class="info-value" id="profileEmergency">--</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>Goals</h3></div>
+        <p id="profileGoals" style="font-size:14px; color:var(--color-text-muted); line-height:1.6;">--</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>Medical History</h3></div>
+        <p id="profileMedHistory" style="font-size:14px; color:var(--color-text-muted); line-height:1.6;">--</p>
+      </div>
+    </section>
+
+    <!-- ============ PHOTOS TAB ============ -->
+    <section class="tab-panel" id="tab-photos">
+      <div class="card">
+        <div class="card-header">
+          <h3>Upload Progress Photo</h3>
+          <span class="card-sub">Front, side, and back angles help track your progress</span>
+        </div>
+        <div class="photo-grid" style="grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); max-width: 460px;">
+          <label class="photo-upload-tile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            Front
+            <input type="file" accept="image/*" data-photo-type="front" />
+          </label>
+          <label class="photo-upload-tile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            Side
+            <input type="file" accept="image/*" data-photo-type="side" />
+          </label>
+          <label class="photo-upload-tile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            Back
+            <input type="file" accept="image/*" data-photo-type="back" />
+          </label>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h3>Photo History</h3>
+        </div>
+        <div class="photo-grid" id="photoHistoryGrid"><div class="loading-wrap"><div class="spinner"></div></div></div>
+      </div>
+    </section>
+
+    <!-- ============ PLANS TAB ============ -->
+    <section class="tab-panel" id="tab-plans">
+      <div class="card">
+        <div class="card-header">
+          <h3>Treatment Plans</h3>
+          <span class="card-sub">All plans assigned by your doctor</span>
+        </div>
+        <div id="plansList"><div class="loading-wrap"><div class="spinner"></div></div></div>
+      </div>
+    </section>
+
+    <!-- ============ FORMS TAB ============ -->
+    <section class="tab-panel" id="tab-forms">
+      <div class="card">
+        <div class="card-header">
+          <h3>Assigned Forms</h3>
+          <span class="card-sub">Complete forms assigned by your doctor</span>
+        </div>
+        <div id="formsList"><div class="loading-wrap"><div class="spinner"></div></div></div>
+      </div>
+    </section>
+
+    <!-- ============ NOTES TAB ============ -->
+    <section class="tab-panel" id="tab-notes">
+      <div class="card">
+        <div class="card-header">
+          <h3>Consultation Notes</h3>
+          <span class="card-sub">Notes from your doctor — view only</span>
+        </div>
+        <div id="notesList"><div class="loading-wrap"><div class="spinner"></div></div></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/client-dashboard.js"></script>
+</body>
+</html>
